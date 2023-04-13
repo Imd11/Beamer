@@ -1,0 +1,1210 @@
+%--------------------------------------------------------
+% 1. 本模板是通过现用现学不断积累修改得到的，其中必有大量不恰当之处，欢迎批评指教。
+% 2. 本模板适合于毕业论文答辩、课程大作业展示等内容比较少的场景。幻灯片上方导航栏虽然能明显区别Beamer和PPT，在文档较短时属于加分项，但在太长时显得累赘。
+% 3. 本模板不局限于中国科学技术大学使用，只用修改.sty文件中变量ustcblue的rgb参数就可以改变颜色风格，替换111.png和112.png两个图片就可以修改背景。
+% 4. background文件夹中包含了两个背景图片的.png格式和.psd格式，其中.psd格式可以自由修改。
+% 5. 本模板在参考了很多优秀的模板和论坛上的回答，如https://www.latexstudio.net/archives/51752.html， https://github.com/teancake/latex-beamer-beihang， https://tex.stackexchange.com/questions/167648/beamer-navigation-symbols-inside-footline 等等，非常感谢。
+%--------------------------------------------------------
+%--------------------------------------------------------
+% 注意：
+% 1. 请设置XeLaTeX编译否则可能无法生成PDF；修改很简单，可自行百度。
+% 2. 文档推荐使用微软雅黑字体，若使用overleaf等请自行适配微软雅黑或更改成其他字体。
+% 3. 需要使用新功能时，可以修改或添加引用的包。
+%--------------------------------------------------------
+\documentclass{beamer}%[hyperref,UTF8,11pt]
+\usepackage{hyperref} %导入超链接
+\usepackage{ctex}
+\usepackage[utf8]{inputenc}
+\setbeamersize{text margin left=0.042\paperwidth,text margin right=0.042\paperwidth}% 调整左右边距
+
+\usepackage{fontspec}
+\usepackage{comment}
+\usepackage{xeCJK}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{bm}
+\usepackage{pifont}
+\usepackage[utf8]{inputenc}
+
+\usepackage{array}
+\usepackage{cases}
+\usepackage{multirow}
+\usepackage{enumerate}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{xcolor}
+\usepackage{amsmath, amsfonts, amssymb} % math equations, symbols
+\usepackage[english]{babel}
+\usepackage{color}      % color content
+\usepackage{graphicx}   % import figures
+\usepackage{url}        % hyperlinks
+\usepackage{bm}         % bold type for equations
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{epstopdf}
+\usepackage{epsfig}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\hypersetup{CJKbookmarks=true}
+\usepackage{url}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\newtheorem{assumption}{假设}
+\newtheorem{proposition}{性质}
+\usepackage{booktabs}
+\usepackage[backend=biber,style=numeric,sorting=none]{biblatex}
+\beamertemplatetextbibitems
+
+\setcounter{tocdepth}{1}
+\usepackage{subcaption}
+\usepackage{amsmath}
+
+\usepackage{ustcbeamersx}
+\graphicspath{{image/}}
+\setbeamertemplate{navigation symbols}{} %去掉导航栏
+
+
+
+\newfontfamily\WRYaHei{微软雅黑}%新建微软雅黑字体，注意，使用\newfontfamily命令创建的字体只能用于英文。是吗？是的，fontspec宏包提供了\fontspec、\setmainfont、\setsansfont、\setmonofont、\newfontfamily命令，当使用ctex宏包的时候，这些命令只对英文和阿拉伯数字有效。而ctex所使用的xeCJK宏包里所提供的\setCJKmainfont、\setCJKsansfont、\setCJKmonofont、\setCJKmonofont、\setCJKmonofont、\setCJKfamilyfont、\setCJKfallbackfamilyfont则只对CJK字体有效。
+\setCJKfamilyfont{WRYaHei}{微软雅黑}%新建微软雅黑字体，注意，使用\setCJKfamilyfont命令创建的字体只能用于中文。
+\newcommand{\WRYaHeiZH}{\WRYaHei\CJKfamily{WRYaHei}}%新建一个命令，对中文和英文都使用微软雅黑
+\setCJKmainfont{微软雅黑}
+\setsansfont{Times New Roman}%这个是用来设置正文中的英语使用Times New Roman的，（可是为什么是这一个而不是另外的两个呢？）
+%常规大小
+\renewcommand{\normalsize}{\fontsize{9}{9}\selectfont}%把常规大小设置为24pt
+%标题字体
+\setbeamerfont{title}{family=\WRYaHeiZH,size=\fontsize{15}{15}\selectfont,series=\bfseries}%设置标题的字体为微软雅黑，加粗，字号为54pt
+%机构字体
+\setbeamerfont{institute}{family=\WRYaHeiZH,size=\fontsize{8}{8}\selectfont}%设置机构的字体为宋体，不加粗，字号为24pt
+%作者字体
+\setbeamerfont{author}{family=\WRYaHeiZH,size=\fontsize{9}{9}\selectfont}%设置作者的字体和机构的字体相同
+%日期字体
+\setbeamerfont{date}{parent=institute}%设置日期的字体和机构的字体相同
+%list元素的字体
+\setbeamerfont{item projected}{size=\fontsize{9}{9}\selectfont,series=\mdseries}
+\setbeamerfont{itemize/enumerate subbody}{family=\kaishu,size=\fontsize{9}{9}\selectfont,series=\mdseries}
+%帧标题字体
+\setbeamerfont{frametitle}{family=\WRYaHeiZH,size=\fontsize{9.8}{9.8}\selectfont}%设置帧标题的字体为微软雅黑，加粗，字号为36pt
+%页脚字体
+\setbeamerfont{footline}{family=\WRYaHeiZH,size=\fontsize{6}{6}\selectfont}
+
+%右上角校徽
+\setbeamertemplate{frametitle}{
+  \nointerlineskip
+  \begin{beamercolorbox}[sep=0.4em,ht=2em,wd=\paperwidth,leftskip=0cm,rightskip=0cm]{frametitle}
+    \usebeamerfont{frametitle}\insertframetitle\hfill%\hfill是用于在标题文本和Logo之间添加空白间隔，使得Logo靠右对齐
+    \raisebox{-0.1em}{\includegraphics[width=0.2\textwidth]{figures/校徽-蓝2}}% 修改logo.png为您的Logo文件名
+  \end{beamercolorbox}
+}
+
+
+% 第一页的设置
+\title[首届研究生学术文化节]{经济学实证前沿方法}
+
+\author{\noindent 杨锦航}
+\institute[研2101]
+{
+	\noindent 天津财经大学统计学院\\
+	\medskip
+	\noindent \textit{ y\_jinhang@stu.tjufe.edu.cn}
+}
+\date{\noindent 2023年4月14日}
+
+
+
+
+\AtBeginSection[]% 每章之前加目录，不喜欢可以注释掉
+{
+	\begin{frame}{目录}
+		%\transfade%淡入淡出效果
+		\tableofcontents[sectionstyle=show/shaded,subsectionstyle=show/shaded/hide] %突出显示当前章节，而其它章节都进行了淡化处理
+		\addtocounter{framenumber}{-1}  %目录页不计算页码
+	\end{frame}
+}
+
+
+\begin{document}
+	\begin{frame}
+		\pgfdeclareimage[width=\paperwidth,height=0.9575\paperheight]{bg}{封面背景图_书法}
+        \setlength{\parindent}{0pt}%设置首行缩进0字符
+		%\transfade %渐变
+		\titlepage % Print the title page as the first slide
+	\end{frame}
+
+%P4
+\begin{frame}[t]{0 自我介绍}
+\pgfdeclareimage[width=\paperwidth,height=0.9575\paperheight]{bg}{正文背景图_一点点缝隙}
+\begin{columns}[onlytextwidth]
+\column{0.6\textwidth}
+\begin{itemize}
+  \item 南京大学商学院研究助理
+  \item 第八届全国大学生统计建模大赛全国总决赛研究生组三等奖
+  \item 会议论文：
+  \begin{itemize}
+    \item 第九届中国统计学年会
+    \item 中国人民大学习近平总书记关于“三农”工作重要论述研究中心揭牌暨2022年中国农林经济管理学术年会
+    \item 第一届中国科技创新论坛暨首届香樟科技创新论坛
+  \end{itemize}
+  \item 期刊论文：
+  \begin{itemize}
+    \item accepted
+    \item submit
+  \end{itemize}
+\end{itemize}
+\column{0.38\textwidth}
+\begin{center}
+	\includegraphics[width=1\textwidth]{figures/会议照}
+\end{center}
+\end{columns}
+\end{frame}
+
+
+
+
+%P4
+\begin{frame}[t]{0 现在的工作}
+\begin{itemize}
+  \item “中国经济社会大数据”研究项目简介
+  \begin{itemize}
+    \item 将目前可获取的各种来源的经济社会大数据进行系统整理和整合，在此基础上提出具有创新的研究计划，最终完成一系列具有特色的经验研究。
+    \item 现有成员14人，遍布国内外各高校：南洋理工大学、香港中文大学、波士顿大学、加州大学、威斯康星大学、南京大学、中央财经大学、天津财经大学等。
+  \end{itemize}
+  \item 项目方向：
+  \begin{itemize}
+   \item 1.中国经济史数据
+   \item 2.各级地区统计数据
+   \item 3.灯光与疫情数据
+   \item 4.企业调查数据以及家庭调查数据等
+  \end{itemize}
+  \item 我的工作：
+  \begin{itemize}
+    \item 收集和整理与中国经济史相关主题的中英文文献，汇报论文；
+    \item 利用统计软件(Stata/R)收集和整理相关统计数据，并进行分析；
+    \item 制定相关主题研究计划，撰写初稿。
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+
+%Page 02 目录
+\begin{frame}[t]{目录}
+%\frametitle{目录}
+\tableofcontents  %生成目录
+\end{frame}
+	
+
+\section{科研经验}  %左侧与顶侧的主标题
+\subsection*{科研经验}
+
+
+%P4
+\begin{frame}[t]{1.1 科研经验}
+\begin{itemize}
+  \item 讲座
+  \begin{itemize}
+    \item 大讲座听思想，小讲座学方法。
+    \item 讲座>课堂，但不意味着放弃课堂。
+  \end{itemize}
+  \item 蹭课
+  \begin{itemize}
+    \item 时间允许的情况下，按照自己的兴趣选择性去听。
+    \item 不记笔记等于白听。
+  \end{itemize}
+  \item 新闻
+  \begin{itemize}
+    \item 了解时事、政策动向，为选题找方向。
+    \item 《新闻30分》、《天下财经》等
+  \end{itemize}
+\end{itemize}
+重点结合第三部分阐述
+\end{frame}
+
+%P4
+\begin{frame}[t]{1.2 学术会议}
+\begin{itemize}
+  \item 参加会议的好处：
+  \begin{itemize}
+    \item 了解领域前沿；
+    \item 收获评审意见，精进自己的论文；
+    \item 交友，认识新同学、新老师；
+    \item 等等；
+  \end{itemize}
+  \item 会议征稿信息：
+\end{itemize}
+\vspace{-0.2cm} %调整图片与上文的垂直距离
+\begin{center}
+	\includegraphics[width=1\textwidth]{figures/会议征稿信息}
+\end{center}
+\end{frame}
+
+%P4
+\begin{frame}[t]{1.3 论文写作}
+\begin{itemize}
+  \item 写作建议
+  \begin{itemize}
+    \item 故事>方法；
+    \item 文献综述最重要；
+    \item 论文比到最后比的是选题；
+    \item 没有3-4个月的高强度投入写不出好论文；
+    \item 不要怕“麻烦”，拒绝“退而求其次”，结果会告诉你答案。
+  \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+
+
+
+
+
+\section{Zotero分享}  %左侧与顶侧的主标题
+\subsection*{Zotero分享}
+
+
+%P4
+\begin{frame}[t]{2.1 初识Zotero}
+\begin{itemize}
+  \item Zotero简介
+  \begin{itemize}
+    \item Zotero是一款自由及开放原始码的文献管理软件，用以管理书目信息（如作者、标题、出版社、摘要、阅读笔记等）及相关材料（如PDF文件）。其最著名的特性是作为浏览器插件、在线同步、与文档编辑软件如Microsoft Word、LibreOffice、OpenOffice.org Writer、NeoOffice等集成，可生成文内引用、生成页面脚注或文后的参考文献，最初由乔治梅森大学的历史和新媒体中心在2006年创建。
+  \end{itemize}
+  \item Zotero的优势：
+  \begin{itemize}
+    \item 开源、免费；
+    \item 插件多，功能丰富；
+    \item 导入文献方便；
+    \item 同步快；
+    \item 可以设置多个标签，多级目录；
+    \item 引用和更新引用文献方便，引用格式多，可以直接下载需要的格式；
+    \item 等等
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+
+
+
+
+
+%P4
+\begin{frame}[t]{2.1 初识Zotero}
+\begin{itemize}
+  \item Zotero主界面：
+\end{itemize}
+\vspace{-0.4cm} %调整图片与上文的垂直距离
+\begin{center}
+		\includegraphics[width=1\textwidth]{figures/zotero主界面}
+\end{center}
+\end{frame}
+
+
+%P4
+\begin{frame}[t]{2.2 下载与安装}
+\begin{itemize}
+  \item 下载网址：https://www.zotero.org/download/
+
+\begin{columns}[onlytextwidth]
+\column{0.5\textwidth}
+\begin{itemize}
+  \item Edge界面：
+\begin{center}
+		\includegraphics[width=0.9\textwidth]{figures/zotero下载界面_微软}
+\end{center}
+
+
+\end{itemize}
+\column{0.5\textwidth}
+\begin{itemize}
+  \item Google界面：
+\begin{center}
+		\includegraphics[width=0.9\textwidth]{figures/zotero下载界面_谷歌}
+\end{center}
+
+\end{itemize}
+\end{columns}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[t]{2.2 下载与安装}
+\begin{itemize}
+\item 客户端与浏览器插件都要下载！
+\begin{columns}[onlytextwidth]
+\column{0.5\textwidth}
+\begin{itemize}
+\item Edge插件：
+\begin{center}
+		\includegraphics[width=0.9\textwidth]{figures/微软插件}
+\end{center}
+\end{itemize}
+\column{0.5\textwidth}
+\begin{itemize}
+\item Google插件：
+\begin{center}
+		\includegraphics[width=0.9\textwidth]{figures/谷歌插件}
+\end{center}
+\end{itemize}
+\end{columns}
+\item 客户端按提示安装。
+\end{itemize}
+\end{frame}
+
+
+%P4
+\begin{frame}[t]{2.3 文献获取-中文}
+\begin{itemize}
+\item 第一步：
+\end{itemize}
+\vspace{-0.4cm} %调整图片与上文的垂直距离
+\begin{center}
+		\includegraphics[width=1\textwidth]{figures/中文-1点击要下载的文献}
+\end{center}
+\end{frame}
+
+%P4
+\begin{frame}[t]{2.3 文献获取-中文}
+\begin{itemize}
+\item 第二步：
+\end{itemize}
+\vspace{-0.4cm} %调整图片与上文的垂直距离
+\begin{center}
+		\includegraphics[width=1\textwidth]{figures/中文-2点击插件}
+\end{center}
+\end{frame}
+
+%P4
+\begin{frame}[t]{2.3 文献获取-中文}
+\begin{itemize}
+\item 第三步：
+\end{itemize}
+\vspace{-0.4cm} %调整图片与上文的垂直距离
+\begin{center}
+		\includegraphics[width=1\textwidth]{figures/中文-3等待Zotero自动下载论文}
+\end{center}
+\end{frame}
+
+%P4
+\begin{frame}[t]{2.3 文献获取-英文}
+\begin{itemize}
+  \item 方法一：
+\begin{itemize}
+\item 第1步：
+\end{itemize}
+\begin{center}
+		\includegraphics[width=0.9\textwidth]{figures/英文-方法1-1}
+\end{center}
+\end{itemize}
+\end{frame}
+
+%P4
+\begin{frame}[t]{2.3 文献获取-英文}
+\begin{itemize}
+  \item 方法一：
+\begin{itemize}
+\item 第2步：
+\end{itemize}
+\begin{center}
+		\includegraphics[width=0.9\textwidth]{figures/英文-方法1-2}
+\end{center}
+\end{itemize}
+\end{frame}
+
+%P4
+\begin{frame}[t]{2.3 文献获取-英文}
+\begin{itemize}
+  \item 方法一：
+\begin{itemize}
+\item 第3步：
+\end{itemize}
+\begin{center}
+		\includegraphics[width=0.9\textwidth]{figures/英文-方法1-3}
+\end{center}
+\end{itemize}
+\end{frame}
+
+%P4
+\begin{frame}[t]{2.3 文献获取-英文}
+\begin{itemize}
+  \item 方法二：
+\begin{itemize}
+\item 第1步：
+\end{itemize}
+\begin{center}
+		\includegraphics[width=0.9\textwidth]{figures/英文-方法2-1点击插件}
+\end{center}
+\end{itemize}
+\end{frame}
+
+%P4
+\begin{frame}[t]{2.3 文献获取-英文}
+\begin{itemize}
+  \item 方法二：
+\begin{itemize}
+\item 第2、3步：
+\end{itemize}
+\begin{center}
+		\includegraphics[width=0.9\textwidth]{figures/英文-方法2-2与3}
+\end{center}
+\end{itemize}
+\end{frame}
+
+%P4
+\begin{frame}[t]{2.3 文献获取-英文}
+\begin{itemize}
+  \item 方法二：
+\begin{itemize}
+\item 第4步：
+\end{itemize}
+\begin{center}
+		\includegraphics[width=0.9\textwidth]{figures/英文-方法2-4}
+\end{center}
+\end{itemize}
+\end{frame}
+
+
+%P4
+\begin{frame}[t]{2.3 文献获取-英文}
+\begin{itemize}
+\item 结果保存：
+\begin{center}
+		\includegraphics[width=0.9\textwidth]{figures/英文保存}
+\end{center}
+\end{itemize}
+\end{frame}
+
+
+
+%P4
+\begin{frame}[t]{2.3 文献获取}
+\begin{itemize}
+  \item 提示
+  \begin{itemize}
+    \item 1、中文文献的下载必须要在校园网覆盖范围内，或者用vpn；
+    \item 2、使用谷歌学术的真正目的是找到英文文献的主页；
+    \item 3、不一定非得翻墙，只要能找到文献的主页即可，剩下的交给Zotero。
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+
+
+%P4
+\begin{frame}[t]{2.4 文献导入}
+\begin{itemize}
+  \item 2.4.1 基本演示
+  \begin{itemize}
+    \item 简单导入；
+    \item 中间导入；
+    \item 互换位置；
+    \item 删除；
+    \item 作者在外日期在内；
+    \item 变换引用格式，csl文件的导入；
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+%P4
+\begin{frame}[t]{2.5 变换引文格式}
+\begin{itemize}
+  \item 《中国工业经济》
+\end{itemize}
+\vspace{-0.2cm} %调整图片与上文的垂直距离
+\begin{center}
+	\includegraphics[width=0.7\textwidth]{figures/中国工业经济}
+\end{center}
+\end{frame}
+
+%P4
+\begin{frame}[t]{2.5 变换引文格式}
+\begin{itemize}
+  \item 《经济研究》
+\end{itemize}
+\vspace{-0.25cm} %调整图片与上文的垂直距离
+\begin{center}
+	\includegraphics[width=0.75\textwidth]{figures/经济研究}
+\end{center}
+\end{frame}
+
+%P4
+\begin{frame}[t]{2.5 变换引文格式}
+\begin{itemize}
+  \item 《天津财经大学博士硕士学位论文编写规范2019年版》
+\end{itemize}
+\vspace{-0.3cm} %调整图片与上文的垂直距离
+\begin{center}
+	\includegraphics[width=0.65\textwidth]{figures/天财格式1}
+\end{center}
+\end{frame}
+
+
+%P4
+\begin{frame}[t]{2.5 变换引文格式}
+\begin{itemize}
+  \item 《天津财经大学博士硕士学位论文编写规范2019年版》
+\end{itemize}
+\begin{columns}[onlytextwidth]
+\column{0.5\textwidth}
+\vspace{-0.3cm} %调整图片与上文的垂直距离
+\begin{center}
+	\includegraphics[width=1.1\textwidth]{figures/天财格式2示例}
+\end{center}
+\column{0.5\textwidth}
+\begin{center}
+	\includegraphics[width=0.9\textwidth]{figures/天财格式2}
+\end{center}
+\end{columns}
+\end{frame}
+
+
+
+
+%P4
+\begin{frame}[t]{2.5 变换引文格式}
+\begin{itemize}
+  \item 《天津财经大学博士硕士学位论文编写规范2019年版》-可参考420北航：
+\end{itemize}
+\begin{center}
+	\includegraphics[width=0.7\textwidth]{figures/北航}
+\end{center}
+\small 常用期刊csl文件下载链接：\href{https://github.com/citation-style-language/styles}{https://github.com/citation-style-language/styles}
+\end{frame}
+
+
+
+\section{DID前沿}  %左侧与顶侧的主标题
+\subsection*{DID前沿}
+\begin{frame}[t]{\large 0 实证思路}
+\begin{center}
+		\includegraphics[width=1\textwidth]{figures/构思图-1}
+\end{center}
+\begin{center}
+\small 《对外合作促进了中国智能制造发展吗——基于中德智能制造合作试点的准自然实验》
+\end{center}
+\end{frame}
+
+
+
+\begin{frame}[t]{\large 0 数据来源}
+\begin{itemize}
+  \item 参考数据：
+\begin{itemize}
+  \item 参考曹清峰在《中国工业经济》发表的文章《国家级新区对区域经济增长的带动效应——基于70大中城市的经验证据》，并以文中的数据集为例进行实证展示。
+\end{itemize}
+\end{itemize}
+\vspace{-0.4cm} %调整图片与上文的垂直距离
+\begin{center}
+		\includegraphics[width=0.6\textwidth]{figures/曹清峰}
+\end{center}
+\end{frame}
+
+
+
+
+\begin{frame}[t]{\large 3.1 基准回归}
+\begin{itemize}
+  \item 3.1.1 政策效应的识别
+  \begin{itemize}
+  \item 交叠DID情形下的识别策略：
+  \begin{equation}
+  \setlength{\abovedisplayskip}{4pt}
+  \setlength{\belowdisplayskip}{4pt}
+    Y_{it}=\beta_{0}+\beta_1 DID_{it}+\beta_2 control_{i t}+\eta_i+\gamma_t+\varepsilon_{it}
+  \end{equation}
+  $Y_{it}$ 是被解释变量；$DID_{it}$ 为核心解释变量，表达式为$DID_{it}=treat_i+post_{it}$；$\eta_i $ 为个体固定效应，$\gamma_t $ 为时间固定效应。
+
+  \item $DID_{it}$的系数$\beta_1$是待估参数。
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+%P4
+\begin{frame}[t]{\large 3.1 基准回归}
+\begin{itemize}
+  \item 3.1.2 基准回归结果
+\end{itemize}
+\vspace{-0.5cm} %调整图片与上文的垂直距离
+\begin{center}
+	\includegraphics[width=0.5\textwidth]{figures/基准回归}
+\end{center}
+\end{frame}
+
+%page
+\begin{frame}[t]{\large 3.2 其他识别策略}
+\begin{itemize}
+  \item 3.2.1 政策倾向性得分的计算
+  \begin{itemize}
+  \item  利用弹性网络对政策的倾向性得分进行计算，弹性网络目标函数为：
+  \begin{equation}
+  \setlength{\abovedisplayskip}{1pt}
+  \setlength{\belowdisplayskip}{1pt}
+    \sum_{i=1}^n\left(y_i-\beta_0-\beta_1 x_{i 1}-\cdots-\beta_p x_{i p}\right)^2+\lambda\left(\alpha \sum_{j=1}^p\left|\beta_j\right|+(1-\alpha) \sum_{j=1}^p \beta_j^2\right)
+  \end{equation}
+  \item  其中，惩罚项$\sum_{j=1}^p\left|\beta_j\right|$为$L_1$范数，惩罚项$\sum_{j=1}^p \beta_j^2$为$L_2$范数，$\alpha$和$\lambda$是两个待调节的超参数。
+  \item $\alpha$取值为$[0,1]$，用来表示$L_1$范数与$L_2$范数的相对比重；$\lambda$是调节参数，取值$[0,\infty)$，用以控制对非零参数$\beta_j$的惩罚力度，$\lambda$值越大则表示惩罚力度越大。
+  \item 选择10折交叉验证对参数进行选择：首先以处理组虚拟变量作为分层变量对样本进行分层抽样，每次随机抽取90\% 作为训练集，10\% 作为测试集，重复10 次，然后求每种参数组合的平均$roc\_auc$值，最终选择出最优的参数组合。
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+
+%page
+\begin{frame}[t]{\large 3.2 其他识别策略}
+\begin{itemize}
+  \item 3.2.2 双稳健估计
+  \begin{itemize}
+    \item 倾向性得分的计算：经过调参，确定两个超参数的值分为$\alpha=0$以及$\lambda=0.00001$。根据两个最优超参数对政策倾向得分模型进行拟合，计算出处理组虚拟变量的拟合值——即倾向性得分。
+    \item 传统AIPE计算结果同样可以证明政策效果的显著性。
+  \end{itemize}
+\end{itemize}
+\begin{table}
+\centering
+\caption{传统AIPW}
+\begin{tabular}{cccccc}
+   \toprule
+   回归调整类型 & ATE & 95\%置信区间 \\
+   \midrule
+   OLS & 0.6096 & (0.1352,1.0840 )  \\
+   \bottomrule
+\end{tabular}
+\end{table}
+\end{frame}
+
+
+%page
+\begin{frame}[t]{\large 3.2 其他识别策略}
+\begin{itemize}
+  \item 3.2.3 计算倾向性得分的其他策略
+  \begin{itemize}
+    \item 普通逻辑回归（PSM-DID所采取的策略）；随机森林；弹性网络；lasso；
+  \end{itemize}
+\end{itemize}
+\vspace{-0.9cm} %调整图片与上文的垂直距离
+\begin{center}
+	\includegraphics[width=0.75\textwidth]{figures/R倾向得分4张图}
+\end{center}
+\end{frame}
+
+
+%page
+\begin{frame}[t]{\large 3.3 偏误诊断}
+\begin{itemize}
+  \item 3.3.1 偏误来源
+\end{itemize}
+\vspace{-0.4cm} %调整图片与上文的垂直距离
+\begin{center}
+	\includegraphics[width=0.75\textwidth]{figures/交叠did分析图}
+\end{center}
+\end{frame}
+
+
+
+%page
+\begin{frame}[t]{\large 3.3 偏误诊断}
+\begin{itemize}
+  \item 3.3.1 偏误来源
+  \begin{itemize}
+  \item 对照组分类：\ding{172}“新处理个体 vs 还未处理个体”；\ding{173}“新处理个体 vs 已经处理个体”\ding{174}“新处理个体 vs 从未处理个体”。
+  \end{itemize}
+\end{itemize}
+\vspace{-0.2cm} %调整图片与上文的垂直距离
+\begin{center}
+	\includegraphics[width=0.75\textwidth]{figures/四种对照组情形}
+\end{center}
+\end{frame}
+
+%page
+\begin{frame}[t]{\large 3.3 偏误诊断}
+\begin{itemize}
+  \item 3.3.1 偏误来源
+\end{itemize}
+\begin{center}
+	\includegraphics[width=0.75\textwidth]{figures/处理时点图表格版}
+\end{center}
+\end{frame}
+
+
+
+%page
+\begin{frame}[t]{\large 3.3 偏误诊断}
+\begin{itemize}
+  \item 3.3.2 动态双重差分
+  \begin{itemize}
+  \item 在处理时点交错发生的背景下，动态双重差分法以接受政策处理的起始时点作为相对时间参照系进行平行趋势检验，计量模型为：
+    \begin{equation}
+    \setlength{\abovedisplayskip}{4pt}
+    \setlength{\belowdisplayskip}{4pt}
+     Y_{i t}=\beta_0+\prod_{-9 \leq k \leq 5, k \neq-1}^4 \beta_k D_{i t}^k+\beta_6 control_{i t}+\eta_i+\lambda_t+\varepsilon_{i t}
+    \end{equation}
+  \item $D_{i t}^k=D_i\times S_{t}^{k}$ 为试点政策实施这一事件的虚拟变量，$D_i$表示个体$i$是否是处理组的虚拟变量，$S_{t}^{k}$表示年份$t$是否为政策发生年的虚拟变量。令$p=t-g$。$g$ 表示政策开始实施的年份，$p$表示距离政策开始实施年份的相对时间：若$p$取正，表示政策向前推行$p$年；若$p$取负，则表示政策向后推行$p$年。当$k=p$时，所对应的$S_{t}^{k}=1$，否则$S_{t}^{k}=0$。
+  \item 在计算过程中，为克服完全共线性对结果的影响，本文选择了以试点政策前一年作为基准年。
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+%page
+\begin{frame}[t]{\large 3.3 偏误诊断}
+\begin{itemize}
+  \item 3.3.2 事件研究法
+  \begin{itemize}
+  \item 在多时期、时变处理时点的情形下，当期未受处理、但在未来会受到处理的处理组个体（第\ding{172}类DID情形）和当期已经接受处理的处理组个体（第\ding{173}类DID情形）可以进入对照组，将这两类特殊的“对照组”单独提取出来重新对政策的处理效应进行评估，这便是事件研究法（event study）在交叠DID中的应用(黄炜等, 2022)。
+  \item 事件研究法的计量模型为：
+    \begin{equation}
+    \setlength{\abovedisplayskip}{4pt}
+    \setlength{\belowdisplayskip}{4pt}
+        Y_{i t}=\beta_0+\prod_{-9 \leq k \leq 5, k \neq-1}^4 \beta_k D_{i t}^k+\beta_6 control_{it}+\eta_i+\lambda_t+\varepsilon_{it}
+    \end{equation}
+  \item 事件研究法剔除了这种从未接受处理的较为完美的对照组样本，这也更利于直观感受第\ding{173}类不好的对照组情形所带来的影响。
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t]{\large 3.3 偏误诊断}
+\begin{itemize}
+\item 将结果对比起来看：
+\begin{columns}[onlytextwidth]
+\column{0.5\textwidth}
+\begin{itemize}
+\item 动态双重差分
+\begin{center}
+		\includegraphics[width=0.9\textwidth]{figures/动态双重差分}
+\end{center}
+\end{itemize}
+\column{0.5\textwidth}
+\begin{itemize}
+\item 事件研究法
+\begin{center}
+		\includegraphics[width=0.9\textwidth]{figures/事件研究法}
+\end{center}
+\end{itemize}
+\end{columns}
+\end{itemize}
+\end{frame}
+
+
+
+
+%page
+\begin{frame}[t]{\large 3.3 偏误诊断}
+\begin{itemize}
+  \item 3.3.3 负权重问题
+  \begin{itemize}
+  \item 根据Frisch-Waugh-Lovell定理(Frisch R和F V Waugh, 1933; Lovell M C, 1963)，$\hat{\beta}^{DID}$等于结果变量$y_{it}$对去除个体和时间固定效应的余值化处理变量 $\widetilde{D}_{it}$ 的一元回归系数：
+    \begin{equation}
+    \setlength{\abovedisplayskip}{1pt}
+    \setlength{\belowdisplayskip}{1pt}
+    \hat{\beta}^{DID}=\frac{\hat{C}\left(y_{i t}, \widetilde{D}_{i t}\right)}{\hat{V}^D}=\frac{\sum_{i t} y_{i t} \widetilde{D}_{i t}}{\sum_{i t} \widetilde{D}_{i t}^2}
+    \end{equation}
+  \item DID研究设计的TWFE估计量$\hat{\beta}^{DID}$是所有样本结果变量的加权和。
+  \item 负权重问题的本质：在处理组进入对照组的情形中，其结果变量都被赋予了负权重，意味着$\hat{\beta}^{DID}$会被严重低估，甚至可能估计出符号相反的处理效应。
+  \item 其权重$\frac{\widetilde{D}_{it}}{\sum_{it}\widetilde{D}_{i t}^2}$与余值化处理变量$\widetilde{D}_{it}$成比例，且符号相同，故可以通过判断余值化处理变量的符号来确定权重的正负。
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+
+%page
+\begin{frame}[t]{\large 3.3 偏误诊断}
+\begin{itemize}
+  \item 3.3.3 负权重问题
+  \begin{itemize}
+  \item 处理变量余值可以通过处理变量对个体和时间固定效应回归取残差得到。
+  \item Jakiela(2021)认为，接受处理的个体获得负权重并无不妥：
+  \begin{itemize}
+  \item 如果处理效应是同质的，余值化结果变量与余值化处理变量之间的呈现线性关系可以保证TWFE估计量正确识别出处理效应，即便是第\ding{173}类TWFE估计量；
+  \item 如果处理效应是异质的，第\ding{173}类TWFE估计量将会产生严重偏误，进而可能会导致总的TWFE估计量产生严重偏误。
+  \end{itemize}
+  \item 这意味着第二类TWFE估计量产生偏误的根源在于负权重与异质性处理效应的同时出现，因此需要同时对负权重和同质性处理效应假设进行检验。
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+%page
+\begin{frame}[t]{\large 3.3 偏误诊断}
+\begin{itemize}
+  \item 3.3.3 负权重问题
+\begin{itemize}
+  \item 负权重分布图显示，有一半处理组的观测值被赋予了负的权重，处理组中负权重问题较严重。
+  \end{itemize}
+\end{itemize}
+\vspace{-0.4cm} %调整图片与上文的垂直距离
+\begin{center}
+	\includegraphics[width=0.6\textwidth]{figures/负权重分布图}
+\end{center}
+\end{frame}
+
+
+
+%page
+\begin{frame}[t]{\large 3.3 偏误诊断}
+\begin{itemize}
+  \item 3.3.4 同质性处理效应假设检验
+ \begin{itemize}
+  \item 参考Jakiela(2021)的研究，对处理效应的同质性假设进行检验。在同质性处理假设与平行趋势假设成立的基础上，个体$i$在$t$期的结果变量可以表示为：
+    \begin{equation}
+    \setlength{\abovedisplayskip}{2pt}
+    \setlength{\belowdisplayskip}{2pt}
+    Y_{i t}=\mu_i+\sum_{\tau=1}^t \eta_t+\delta D_{i t}
+    \end{equation}
+  \item 其中$\mu_i$表示个体$i$在第一期的结果变量，$\eta_t$表示在没有接受处理时$t$期与$t-1$期结果变量的差值(平行趋势假设下，该项应为常数)，$\delta$表示同质性处理效应。在同质性处理效应假设和平行趋势假设成立的条件下，余值化结果变量$\widetilde{Y}_{it}$是余值化处理变量$\widetilde{D}_{it}$的线性函数(Jakiela, 2021)，其斜率在处理组和控制组之间应无显著差异。
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+%page
+\begin{frame}[t]{\large 3.3 偏误诊断}
+\begin{itemize}
+  \item 3.3.4 同质性处理效应假设检验
+ \begin{itemize}
+  \item 将gdpr和treat分别对个体固定效应和时间固定效应做回归取残差，得到余值化的结果变量和余值化的处理变量。
+  \item 用余值化结果变量同时对余值化处理变量、处理组的虚拟变量以及二者的交互项进行回归：
+      \begin{equation}
+  \setlength{\abovedisplayskip}{2pt}
+  \setlength{\belowdisplayskip}{2pt}
+      \widetilde{Y}_{it}=\gamma_1 \widetilde{D}_{it}+\gamma_2 treat+\gamma_3 treat \times \widetilde{D}_{it}
+      \end{equation}
+  \item 若$\gamma_1$不显著，表明余值化结果变量与余值化处理变量之间不存在线性关系，同质性处理效应假设不成立。
+  \item 若$\gamma_3$显著，表明处理效应在处理组和控制组之间存在组间差异，同质性处理效应假设也将不成立。
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[t]{\large 3.3 偏误诊断}
+\begin{itemize}
+  \item 3.3.4 同质性处理效应假设检验
+  \begin{itemize}
+  \item 交互项系数显著，证明$\widetilde{Y}_{it}$与$\widetilde{D}_{it}$线性关系的斜率估计量在处理组和控制组之间存在显著差异，即处理效应存在组间异质性。
+  \item 余值化处理变量的系数为29.9171（$\alpha=1\%$），表明余值化结果变量与余值化处理变量之间存在线性关系，不能直接否定同质性处理效应假设不成立的观点。
+  \end{itemize}
+\end{itemize}
+\vspace{-0.4cm} %调整图片与上文的垂直距离
+\begin{center}
+	\includegraphics[width=0.75\textwidth]{figures/同质性处理效应假设检验}
+\end{center}
+\end{frame}
+
+
+%page
+\begin{frame}[t]{\large 3.3 偏误诊断}
+\begin{itemize}
+  \item 3.3.5 培根分解
+  \begin{itemize}
+  \item Bacon(2021)提出了一种在交叠DID情形下诊断TWFE估计量偏误的方法，其核心思想是以组群规模和处理变量的方差为权重，对总的TWFE估计量进行分解。在上述三种对照组的分类方式下，总的TWFE估计量可以分解为：
+    \begin{equation}
+    \setlength{\abovedisplayskip}{2pt}
+    \setlength{\belowdisplayskip}{2pt}
+    \hat{\beta}^{D I D}=\sum_{k \neq U} s_{k U} \hat{\beta}_{k U}^{2 \times 2}+\sum_{k \neq U} \sum_{l>k}\left[s_{k l}^k \hat{\beta}_{k U}^{2 \times 2, k}+s_{k l}^k \hat{\beta}_{k U}^{2 \times 2, l}\right]
+    \end{equation}
+  \item 其中, $\hat{\beta}_{k U}^{2 \times 2} 、 \hat{\beta}_{k U}^{2 \times 2, k}$ 和 $\hat{\beta}_{k U}^{2 \times 2, l}$ 分别是第(1)、(2)和(3)组的 TWFE 估计量，并且有$\sum_{k \neq U} s_{k U}+\sum_{k \neq U} \sum_{l>k}\left[s_{k d}^k+s_{k d}^l\right]=1$
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+
+%page
+\begin{frame}[t]{\large 3.3 偏误诊断}
+\begin{itemize}
+  \item 3.3.5 培根分解
+  \begin{itemize}
+  \item 参考Bacon(2021)的研究，将TWFE估计量估计出的平均处理效应为三组：(1)“先设立国家级新区的城市 vs 后设立国家级新区的城市”；(2)“后设立国家级新区的城市 vs 先设立国家级新区城市”；(3)“设立国家级新区的城市 vs 从未设立国家级新区的城市”。
+  \item “后设立国家级新区的城市 vs 先设立国家级新区城市”所占权重仅为3.1\%，这个比重并不大，且这一类DID估计量为1.659 与总TWFE的估计量1.163 相差也不大。因此，第2类对总的TWFE 估计量的影响不大，基准回归中所用到的TWFE估计量仍然可以为该文所用。
+  \end{itemize}
+\end{itemize}
+\vspace{-0.4cm} %调整图片与上文的垂直距离
+\begin{center}
+	\includegraphics[width=0.75\textwidth]{figures/Bacon分解}
+\end{center}
+\end{frame}
+
+
+%page
+\begin{frame}[t]{\large 3.3 偏误诊断}
+\begin{itemize}
+  \item 3.3.6 DID稳健估计量
+  \begin{itemize}
+  \item 针对交叠 DID 情形, Gardner(2022)提出了一个两阶段 DID 估计量:
+  \begin{itemize}
+  \item 第一步, 用还未处理的观测样本来识别潜在结果:
+    \begin{equation}
+    \setlength{\abovedisplayskip}{2pt}
+    \setlength{\belowdisplayskip}{2pt}
+    Y_{0 g p i t}=\lambda_g+\gamma_p+\varepsilon_{g p i t}
+    \end{equation}
+  \item 第二步, 从观察数据中消除组别效应 $\hat{\lambda}_g$ 与时期效应 $\hat{\gamma}_p$, 用余值化的结果变量对处理变量做回归:
+    \begin{equation}
+    \setlength{\abovedisplayskip}{2pt}
+    \setlength{\belowdisplayskip}{2pt}
+     Y_{0 g p i t}-\hat{\lambda}_g-\hat{\gamma}_p=\beta_{g p} D_{g p}+\varepsilon_{g p i t}
+    \end{equation}
+  \end{itemize}
+  \item  两阶段DID的计算过程均通过GMM实现，最终的计算结果通过事件研究图呈现。
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+
+%page
+\begin{frame}[t]{\large 3.3 偏误诊断}
+\begin{itemize}
+  \item 3.3.6 DID稳健估计量
+  \begin{itemize}
+  \item 从稳健估计量的事件研究图来看，政策实施前估计系数不显著，平行趋势满足，政策实施后估计系数显著，在使用DID稳健估计量的情况下，依旧证明国家级新区的建立可以显著带动经济的增长。
+  \end{itemize}
+\end{itemize}
+\vspace{-0.4cm} %调整图片与上文的垂直距离
+\begin{center}
+	\includegraphics[width=0.7\textwidth]{figures/稳健估计量}
+\end{center}
+\end{frame}
+
+%page
+\begin{frame}[t]{\large 3.3 偏误诊断}
+\begin{itemize}
+  \item 3.3.6 DID稳健估计量
+\end{itemize}
+\vspace{-0.2cm} %调整图片与上文的垂直距离
+\begin{center}
+	\includegraphics[width=1\textwidth]{figures/常用DID稳健估计量}
+\end{center}
+\end{frame}
+
+
+%page
+\begin{frame}[t]{\large 3.4 稳健性检验}
+\begin{itemize}
+  \item 3.4.1 双稳健估计
+  \begin{itemize}
+  \item 双稳健估计(AIPW)：Robins等(1994)在逆概率加权的基础上 提出了双重稳健估计的方法。Luceford和Davidian(2004)比较了多种基于分层和加权的估计方法，发现基于逆概率加权的双重稳健估计量具有更高的有效性和精确性。Austin(2010)发现只有基于逆概率加权的方法才能产生无偏的估计量，Scharfstein 等(1999)的研究表明，结合回归和倾向得分加权可以产生更稳健的估计量，具有更高的有效性和精确性，其具体做法如下：
+    \begin{equation}
+    \setlength{\abovedisplayskip}{4pt}
+    \setlength{\belowdisplayskip}{4pt}
+    \tau=\mathbb{E}\left[W_i \frac{Y_i-\tau\left(1, X_i\right)}{e\left(X_i\right)}+\left(1-W_i\right) \frac{Y_i-\tau\left(0, X_i\right)}{\left(1-e\left(X_i\right)\right)}+\tau\left(1, X_i\right)-\tau\left(0, X_i\right)\right]
+    \end{equation}
+  \item 其中$e\left(X_i\right)$表示倾向性得分，$\tau\left(1, X_i\right)$和$\tau\left(0, X_i\right)$分别表示给定特征向量$X$的情况下处理组和对照结果变量$Y$的期望值。
+  \item 回归调整方法：OLS
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+
+
+%page
+\begin{frame}[t]{\large 4.0 结论}
+\begin{itemize}
+  \item 主要结论：
+\end{itemize}
+\begin{itemize}
+  \item 曹清峰（2020）利用双向固定效应估计量对国家级新区拉动城市经济增长的估计较为稳健，即使在考虑了最新的稳健DID 估计量后，结果依然稳健。
+  \item 因此，上述经验证据表明了，国家级新区可以显著促进区域经济增长。
+\end{itemize}
+\end{frame}
+
+
+
+
+\section{因果森林}  %左侧与顶侧的主标题
+\subsection*{因果森林}
+
+%P4
+\begin{frame}[t]{\large 4.1 异质性分析策略}
+\begin{itemize}
+  \item 4.1.1 传统方法vs新方法
+  \begin{itemize}
+  \item 传统计量模型：
+  \begin{itemize}
+  \item （1）分组回归。分组后样本量不同，导致不同组别回归系数不具有可比性；系数的置信区间可能存在部分重叠，组间系数是否具有显著差异还需要进行组间系数差异检验；分组可能使某组样本量较少，最终影响统计功效等。
+  \item （2）引入交互项。能够导致异质性的因素有很多，选择哪一个特征因素引入到交互项具有一定的主观性甚至是随意性；交互项的次数往往被随意设定(胡安宁等, 2021)，这些都可能导致最终无法呈现准确的处理效应异质性结果。
+  \end{itemize}
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t]{\large 4.1 异质性分析策略}
+\begin{itemize}
+  \item 4.1.1 传统方法vs新方法
+  \begin{itemize}
+  \item 新方法：
+  \begin{itemize}
+  \item Athey等(2019)、Athey和Wager(2019)、Nie和Wager(2021)的研究为处理效应的异质性分析提供了新思路，其核心思路是利用广义随机森林为每一个个体估计出个体处理效应—— 即条件平均处理效应(Conditional Average Treatment Effect，CATE)。
+  \item 然后用CATE与各样本特征进行回归，回归系数即为处理效应异质性的大小。
+  \end{itemize}
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+
+
+
+%page
+\begin{frame}[t]{\large 4.2 识别策略}
+\begin{itemize}
+  \item 4.2.1 HTE的识别
+  \begin{itemize}
+  \item 关于异质性处理效应的估计最早始于 \text{Robinson(1988)}关于部分线性模型的推导。当$\tau(x)=\tau$变为常数，即当处理效应为同质时，那么在无混杂( \text{Chernozhukov} 等, 2017;  \text{Robinson}, 1988)下，下面的估计量对$\tau$是半参数有效的：
+  \begin{equation}
+  \setlength{\abovedisplayskip}{3.5pt}
+  \setlength{\belowdisplayskip}{3.5pt}
+     \hat{\tau}=\frac{\frac{1}{n} \sum_{i=1}^n\left(Y_i-\hat{m}^{(-i)}\left(X_i\right)\right)\left(W_i-\hat{e}^{(-i)}\left(X_i\right)\right)}{\frac{1}{n} \sum_{i=1}^n\left(W_i-\hat{e}^{(-i)}\left(X_i\right)\right)^2}
+  \end{equation}
+
+  其中，$e(x)=\mathbb{P}\left[W_i=1|X_i=x \right]$表示倾向性得分，$m(x)=\mathbb{E}[Y_i|X_i=x]$ 表示给定特征向量$X$的情况下结果变量$Y$的期望值。上标符号$^{(-1)}$表示“袋外估计”(out-of-bag predictions)，即预测结果来源于随机森林中不以第$i$个样本为训练集的决策树的估计结果。
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+%page
+\begin{frame}[t]{\large 4.2 识别策略}
+\begin{itemize}
+  \item 4.2.1 HTE的识别
+  \begin{itemize}
+  \item Nie和 Wager(2017)将这一结果扩展到非参数$\tau(\cdot)$，以估计异质性处理效应。用式(13)来产生一个“R-learner” 目标函数估计每一个个体的平均处理效应：
+  \begin{equation}
+  \setlength{\abovedisplayskip}{3.5pt}
+  \setlength{\belowdisplayskip}{3.5pt}
+    \hat{\tau}(\cdot)=\arg \min \sum_{i=1}^n\left(\left(Y_i-\hat{m}^{(-i)}\left(X_i\right)\right)-\tau\left(X_i\right)\left(W_i-\hat{e}^{(-i)}\left(X_i\right)\right)^2+\Lambda_n(\tau(\cdot))\right)
+  \end{equation}
+  其中$\Lambda_n$是正则化因子，用以控制$\hat{\tau}$的复杂度。
+  \item Athey等(2019)将式（13）与随机森林结合得到广义随机森林，称之为因果森林(causal forests)，将随机森林视为一种自适应核方法，回归森林可以写为：
+  \begin{equation}
+    \setlength{\abovedisplayskip}{2pt}
+    \setlength{\belowdisplayskip}{2pt}
+    \hat{\mu}(x)=\sum_{i=1}^n \alpha_i(x) Y_i, \alpha_i(x)=\frac{1}{B} \sum_{b=1}^B \frac{1\left(\left\{X_i \in L_{b(x)}, i \in S_b\right\}\right)}{\left|\left\{i: X_i \in L_{b(x)}, i \in S_b\right\}\right|}
+  \end{equation}
+  \item 权重$\alpha_i(x)$是由数据驱动形成的核 (kernel)，用以捕捉第$i$个训练样本落入特征向量同为$x$的叶子的频率。$L_{b(x)}$表示带有特征向量$x$的样本在第$b$棵树对应的叶节点，$S_b$ 表示与第$b$棵树关联的子样本集合。
+ \end{itemize}
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}[t]{\large 4.2 识别策略}
+\begin{itemize}
+  \item 4.2.2 ATE的识别
+  \begin{itemize}
+  \item 这种基于核方法的随机森林提供了一个基于式(12)和式(13)的平均处理效应估计策略
+    \begin{equation}
+    \setlength{\abovedisplayskip}{4pt}
+    \setlength{\belowdisplayskip}{4pt}
+    \hat{\tau}(x)=\frac{\sum_{i=1}^n \alpha_i(x)\left(Y_i-\hat{m}^{(-i)}\left(X_i\right)\right)\left(W_i-\hat{e}^{(-i)}\left(X_i\right)\right)}{\sum_{i=1}^n \alpha_i(x)\left(W_i-\hat{e}^{(-i)}\left(X_i\right)\right)^2}
+    \end{equation}
+  \item 具体来说，利用因果森林的软件包“$grf$”首先拟合两个独立的回归森林来估计$\hat{m}(\cdot)$和$\hat{e}(\cdot)$，然后使用这两个森林进行袋外预测，并依据式(13)进行交叉验证选择最优参数，最终使用它们通过式(15)形成一个因果森林。
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+
+%page
+\begin{frame}[t]{\large 4.3 计算结果}
+\begin{itemize}
+  \item 4.3.1 ATE（AIPW）
+\end{itemize}
+\begin{table}
+\centering
+\caption{基于因果林的AIPW}
+\begin{tabular}{cccccc}
+   \toprule
+   回归调整类型 & ATE & 95\%置信区间 \\
+   \midrule
+   随机森林 & 0.4473 & (0.1019,0.7926 )  \\
+   \bottomrule
+\end{tabular}
+\end{table}
+\end{frame}
+
+
+%P4
+\begin{frame}[t]{\large 4.3 计算结果}
+\begin{itemize}
+  \item 4.3.2 基于因果森林的异质性分析
+  \begin{itemize}
+  \item 大部分样本的CATE围绕在0.5附近，说明对于不同特征的城市，国家级新区设立对于其经济增长的影响可能存在异质性。
+  \end{itemize}
+\end{itemize}
+\vspace{-0.4cm} %调整图片与上文的垂直距离
+\begin{center}
+	\includegraphics[width=0.7\textwidth]{figures/cate分布图}
+\end{center}
+\end{frame}
+
+
+
+%P4
+\begin{frame}[t]{\large 4.3 计算结果}
+\begin{itemize}
+  \item 4.3.2 基于因果森林的异质性分析
+  \begin{itemize}
+  \item 采用Chernozhukov V等(2018)提出的“最佳线性预测器”(best linear predictor)对条件平均处理效应的异质性进行统计学检验, 建立两个综合预测量$C_i=\bar{\tau}\left(Z_i-\hat{e}^{(-i)}\left(X_i\right)\right.$ ) 和 $D_i=\left(\bar{\tau}^{(-i)}\left(X_i\right)-\bar{\tau}\right)\left(Z_i-\hat{e}^{(-i)}\left(X_i\right)\right)$，其中 $\bar{\tau}$ 表示平均处理效应袋外估计值的均值。用 $Y_i-\hat{m}^{(-i)}\left(X_i\right)$ 对 $C_i$ 和 $D_i$ 进行回归。
+  \item 如果 $D_i$ 的系数显著不为 0 , 则表明条件平均处理效应存在异质性(Athey S和S Wager, 2019)。
+  \end{itemize}
+\end{itemize}
+\begin{center}
+		\includegraphics[width=0.7\textwidth]{figures/最佳线性预测器}
+\end{center}
+\end{frame}
+
+
+%P4
+\begin{frame}[t]{\large 4.3 计算结果}
+\begin{itemize}
+  \item 4.3.2 基于因果森林的异质性分析
+  \begin{itemize}
+  \item 政策效应在投资（invest）国内消费（consume）和创新水平（innov）方面存在显著的异质性。
+  \end{itemize}
+\end{itemize}
+
+\vspace{-0.4cm} %调整图片与上文的垂直距离
+\begin{center}
+		\includegraphics[width=0.65\textwidth]{figures/异质性分析}
+\end{center}
+\end{frame}
+
+
+%P4
+\begin{frame}[t]{\large 4.3 计算结果}
+\begin{itemize}
+  \item 4.3.3 政策处理批次的异质性
+  \begin{itemize}
+  \item 政策是分批次实施的，不同批次政策的实施效果可能存在差异。
+  \item 以政策实施的批次为分组变量，对CATE进行时间趋势分析。
+  \end{itemize}
+\end{itemize}
+\begin{center}
+		\includegraphics[width=0.7\textwidth]{figures/批次}
+\end{center}
+\end{frame}
+
+
+\begin{frame}[c]{参考文献}
+\vspace{-0.5cm} %调整图片与上文的垂直距离
+\begin{center}
+	\includegraphics[width=0.75\textwidth]{figures/参考文献-1}
+\end{center}
+\end{frame}
+
+
+\begin{frame}[c]{参考文献}
+\vspace{-0.8cm} %调整图片与上文的垂直距离
+\begin{center}
+	\includegraphics[width=0.75\textwidth]{figures/参考文献-2}
+\end{center}
+\end{frame}
+
+\begin{frame}[c]{欢迎关注}
+\begin{itemize}
+  \item 知乎主页：\href{https://www.zhihu.com/people/andy-41-28-35}{https://www.zhihu.com/people/andy-41-28-35}
+  \item B站主页：\href{https://space.bilibili.com/385873972?spm_id_from=333.1007.0.0}{https://space.bilibili.com/385873972?spm\_id\_from=333.1007.0.0}
+  \item GitHub主页：\href{https://github.com/Imd11}{https://github.com/Imd11}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[c]
+\begin{center}
+   \LARGE 感谢观看！
+\end{center}
+\end{frame}
+
+	
+	
+\end{document}
